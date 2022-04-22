@@ -6,16 +6,16 @@
 - Move into the project directory: `cd shopping-list`
 - Install the dependencies: `yarn` or `npm i`
 - Create a .env file with:
-  - TYPEORM_CONNECTION=postgres
-  - TYPEORM_HOST=localhost
-  - TYPEORM_USERNAME=postgres
-  - TYPEORM_PASSWORD=1p@st
-  - TYPEORM_DATABASE=shopping-list
-  - TYPEORM_PORT=5433
-  - TYPEORM_MIGRATIONS=src/database/migrations/*.ts
-  - TYPEORM_MIGRATIONS_DIR=src/database/migrations
-  - TYPEORM_ENTITIES=src/entities/*.ts
-  - TYPEORM_ENTITIES_DIR=src/entities
+  - TYPEORM_CONNECTION
+  - TYPEORM_HOST
+  - TYPEORM_USERNAME
+  - TYPEORM_PASSWORD
+  - TYPEORM_DATABASE
+  - TYPEORM_PORT
+  - TYPEORM_MIGRATIONS
+  - TYPEORM_MIGRATIONS_DIR
+  - TYPEORM_ENTITIES
+  - TYPEORM_ENTITIES_DIR
 
 ## Database
 
