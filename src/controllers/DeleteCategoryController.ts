@@ -1,17 +1,14 @@
-import { Request, Response } from "express"
-import { DeleteProductService } from "../services/DeleteProductService"
+import { Request, response, Response } from "express"
+import { deleteProductService } from "../services/product-services/deleteProductService"
 
-export class DeleteProductController {
-  async handle(request: Request, response: Response) {
-    const { id } = request.params
-    const service = new DeleteProductService()
+export const deleteProductController = async (req: Request, res: Response) => {
+  const { id } = req.params
 
-    const result = service.execute(id)
+  const result = deleteProductService(id)
 
-    if (result instanceof Error) {
-      return response.status(400).json(result.message)
-    }
-
-    return response.status(204).end()
+  if (result instanceof Error) {
+    return response.status(400).json(result.message)
   }
+
+  return response.status(204).end()
 }

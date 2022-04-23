@@ -1,5 +1,5 @@
-import AppDataSource from "../database/dataSource"
-import { Product } from "../entities/Product"
+import AppDataSource from "../../database/dataSource"
+import { Product } from "../../entities/Product"
 
 const { manager } = AppDataSource
 
