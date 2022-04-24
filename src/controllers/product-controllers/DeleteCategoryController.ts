@@ -1,5 +1,5 @@
 import { Request, response, Response } from "express"
-import { deleteProductService } from "../services/product-services/deleteProductService"
+import { deleteProductService } from "../../services/product-services/"
 
 export const deleteProductController = async (req: Request, res: Response) => {
   const { id } = req.params

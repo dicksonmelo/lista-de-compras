@@ -1,9 +1,11 @@
 import { Router } from "express"
-import { createProductController } from "./controllers/createProductController"
-import { deleteProductController } from "./controllers/DeleteCategoryController"
-import { getAllProductsController } from "./controllers/getAllProductsController"
-import { getProductController } from "./controllers/getProductController"
-import { updateProductController } from "./controllers/updateProductController"
+import {
+  createProductController,
+  deleteProductController,
+  getAllProductsController,
+  getProductController,
+  updateProductController,
+} from "./controllers/product-controllers"
 
 const routes = Router()
 

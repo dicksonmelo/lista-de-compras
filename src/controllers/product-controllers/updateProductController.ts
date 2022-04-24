@@ -1,5 +1,5 @@
 import { Response, Request, response } from "express"
-import { updateProductService } from "../services/product-services/updateProductService"
+import { updateProductService } from "../../services/product-services/"
 
 export const updateProductController = async (req: Request, res: Response) => {
   const { id } = req.params

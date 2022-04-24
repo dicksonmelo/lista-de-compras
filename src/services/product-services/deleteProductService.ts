@@ -3,7 +3,7 @@ import AppDataSource from "../../database/dataSource"
 
 const { manager } = AppDataSource
 
-export const deleteProductService = async (id: string) => {
+const deleteProductService = async (id: string) => {
   const repo = manager.getRepository(Product)
 
   if (!(await repo.findOne({ where: { id } }))) {
@@ -12,3 +12,5 @@ export const deleteProductService = async (id: string) => {
 
   await repo.delete(id)
 }
+
+export default deleteProductService

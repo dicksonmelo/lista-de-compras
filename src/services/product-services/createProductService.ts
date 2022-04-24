@@ -7,7 +7,7 @@ type ProductRequest = {
   name: string
 }
 
-export const createProductService = async ({
+const createProductService = async ({
   name,
 }: ProductRequest): Promise<Product | Error> => {
   const repo = manager.getRepository(Product)
@@ -24,3 +24,5 @@ export const createProductService = async ({
 
   return product
 }
+
+export default createProductService

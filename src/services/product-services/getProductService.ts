@@ -1,7 +1,7 @@
 import AppDataSource from "../../database/dataSource"
 import { Product } from "../../entities/Product"
 
-export const getProductService = async ({ id }) => {
+const getProductService = async ({ id }) => {
   const { manager } = AppDataSource
   const repo = manager.getRepository(Product)
 
@@ -13,3 +13,5 @@ export const getProductService = async ({ id }) => {
 
   return product
 }
+
+export default getProductService
