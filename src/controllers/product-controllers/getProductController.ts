@@ -1,5 +1,5 @@
 import { Response, Request } from "express"
-import { getProductService } from "../services/product-services/getProductService"
+import { getProductService } from "../../services/product-services/"
 
 export const getProductController = async (req: Request, res: Response) => {
   const { id } = req.params

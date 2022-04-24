@@ -8,10 +8,7 @@ type ProductUpdateRequest = {
 
 const { manager } = AppDataSource
 
-export const updateProductService = async ({
-  id,
-  name,
-}: ProductUpdateRequest) => {
+const updateProductService = async ({ id, name }: ProductUpdateRequest) => {
   const repo = manager.getRepository(Product)
 
   const product = await repo.findOne({ where: { id } })
@@ -26,3 +23,5 @@ export const updateProductService = async ({
 
   return product
 }
+
+export default updateProductService
