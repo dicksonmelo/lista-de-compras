@@ -1,5 +1,5 @@
 import { createProductController } from "./createProductController"
-import { deleteProductController } from "./DeleteCategoryController"
+import { deleteProductController } from "./deleteCategoryController"
 import { getAllProductsController } from "./getAllProductsController"
 import { getProductController } from "./getProductController"
 import { updateProductController } from "./updateProductController"
