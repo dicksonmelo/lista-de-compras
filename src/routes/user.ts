@@ -21,17 +21,9 @@ router.get("/:id", [checkJwt, checkRole(["ADMIN"])], getOneByIdController)
 router.post("/", createNewUserController)
 
 //Edit one user
-router.patch(
-  "/:id([0-9]+)",
-  [checkJwt, checkRole(["ADMIN"])],
-  editUserController
-)
+router.patch("/:id", [checkJwt, checkRole(["ADMIN"])], editUserController)
 
 //Delete one user
-router.delete(
-  "/:id([0-9]+)",
-  [checkJwt, checkRole(["ADMIN"])],
-  deleteUserController
-)
+router.delete("/:id", [checkJwt, checkRole(["ADMIN"])], deleteUserController)
 
 export default router

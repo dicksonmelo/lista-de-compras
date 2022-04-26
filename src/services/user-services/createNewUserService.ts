@@ -1,7 +1,7 @@
 import AppDataSource from "../../database/dataSource"
 import { User } from "../../entities/User"
 
-export const createNewUserService = async ({
+const createNewUserService = async ({
   username,
   password,
   role,
@@ -28,3 +28,5 @@ export const createNewUserService = async ({
     return new Error(e)
   }
 }
+
+export default createNewUserService

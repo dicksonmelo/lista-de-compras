@@ -1,4 +1,4 @@
-import { createNewUserService } from "../../services/auth-services/createNewUserService"
+import createNewUserService from "../../services/user-services/createNewUserService"
 import { validate } from "class-validator"
 import { Request, Response } from "express"
 import AppDataSource from "../../database/dataSource"
