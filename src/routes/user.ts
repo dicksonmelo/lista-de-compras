@@ -18,7 +18,7 @@ router.get("/", [checkJwt, checkRole(["ADMIN"])], listAll)
 router.get("/:id", [checkJwt, checkRole(["ADMIN"])], getOneByIdController)
 
 //Create a new user
-router.post("/", [checkJwt, checkRole(["ADMIN"])], createNewUserController)
+router.post("/", createNewUserController)
 
 //Edit one user
 router.patch(

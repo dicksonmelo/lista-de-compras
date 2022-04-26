@@ -4,15 +4,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "module": "commonjs",
-    "paths": {
-      "@src/*": ["./src/*"],
-      "@controllers/*": ["./src/controllers/*"],
-      "@models/*": ["./src/models/*"],
-      "@config/*": ["./src/config/*"],
-      "@entities/*": ["./src/entities/*"],
-      "@database/*": ["./src/database/*"],
-      "@utils/*": ["./src/utils/*"]
-    },
+    "baseUrl": "src",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": false,

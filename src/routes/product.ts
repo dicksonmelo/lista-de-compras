@@ -6,13 +6,14 @@ import {
   getProductController,
   updateProductController,
 } from "../controllers/product-controllers"
+import { checkJwt } from "../middlewares/checkJwt"
 
 const routes = Router()
 
-routes.post("/products", createProductController)
-routes.get("/products", getAllProductsController)
-routes.get("/products/:id", getProductController)
-routes.delete("/products/:id", deleteProductController)
-routes.put("/products/:id", updateProductController)
+routes.post("/products", [checkJwt], createProductController)
+routes.get("/products", [checkJwt], getAllProductsController)
+routes.get("/products/:id", [checkJwt], getProductController)
+routes.delete("/products/:id", [checkJwt], deleteProductController)
+routes.put("/products/:id", [checkJwt], updateProductController)
 
-export { routes }
+export default routes
