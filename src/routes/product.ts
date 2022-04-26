@@ -5,7 +5,7 @@ import {
   getAllProductsController,
   getProductController,
   updateProductController,
-} from "./controllers/product-controllers"
+} from "../controllers/product-controllers"
 
 const routes = Router()
 
