@@ -1,16 +1,17 @@
 import { validate } from "class-validator"
 import { Request, Response } from "express"
-import AppDataSource from "@database/dataSource"
-import { User } from "@entities/User"
+import AppDataSource from "../../database/dataSource"
+import { User } from "../../entities/User"
 
 export const createNewUserController = async (req: Request, res: Response) => {
   // get parameters from the body
-  let { email, password } = req.body
+  let { username, password, role } = req.body
 
   let user = new User()
 
-  user.email = email
+  user.username = username
   user.password = password
+  user.role = role
 
   // validate if the parameters are ok
   const errors = await validate(user)
@@ -22,12 +23,13 @@ export const createNewUserController = async (req: Request, res: Response) => {
   // hash the password, to securely store on DB
   user.hashPassword()
 
-  // try to save. if fails, the email is already in use
+  // try to save. if fails, the username is already in use
   const userRepository = AppDataSource.manager.getRepository(User)
   try {
     await userRepository.save(user)
   } catch (e) {
-    res.status(400).send("Email already in use")
+    res.status(400).send("username already in use")
+    return
   }
 
   // if all ok, send 201 response

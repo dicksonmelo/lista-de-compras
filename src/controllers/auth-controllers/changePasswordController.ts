@@ -1,9 +1,7 @@
 import { Request, Response } from "express"
-import jwt from "jsonwebtoken"
-import AppDataSource from "@database/dataSource"
+import AppDataSource from "../../database/dataSource"
 import { validate } from "class-validator"
-import { User } from "@entities/User"
-import config from "../../config/config"
+import { User } from "../../entities/User"
 
 export const changePassword = async (req: Request, res: Response) => {
   // get id from jwt
@@ -23,10 +21,14 @@ export const changePassword = async (req: Request, res: Response) => {
     user = await userRepository.findOneOrFail(id)
   } catch (error) {
     res.status(401).send()
+    return
   }
 
   // check if old password matchs
-  if (!user.checkIfUnencruptedPasswordIsValid(oldPassword)) {
+  let bool: boolean = <boolean>(
+    user.checkIfUnencruptedPasswordIsValid(oldPassword)
+  )
+  if (!bool) {
     res.status(401).send()
     return
   }

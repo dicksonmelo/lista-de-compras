@@ -1,14 +1,14 @@
 import { Request, Response } from "express"
 import jwt from "jsonwebtoken"
-import AppDataSource from "@database/dataSource"
-import { User } from "@entities/User"
-import config from "@src/config/config"
+import AppDataSource from "../../database/dataSource"
+import { User } from "../../entities/User"
+import config from "../../config/config"
 
 export const loginController = async (req: Request, res: Response) => {
-  // check if email and password are set
-  let { email, password } = req.body
+  // check if username and password are set
+  let { username, password } = req.body
 
-  if (!email && password) {
+  if (!username && password) {
     res.status(400).send()
   }
 
@@ -17,20 +17,22 @@ export const loginController = async (req: Request, res: Response) => {
   let user: User
 
   try {
-    user = await userRepository.findOneOrFail({ where: { email } })
+    user = await userRepository.findOneOrFail({ where: { username } })
   } catch (error) {
     res.status(401).send()
+    return
   }
 
   // check if encrypted password match
-  if (!user.checkIfUnencruptedPasswordIsValid(password)) {
+  let bool: boolean = <boolean>user.checkIfUnencruptedPasswordIsValid(password)
+  if (!bool) {
     res.status(401).send()
     return
   }
 
   // sign jwt, valid for 1 hour
   const token = jwt.sign(
-    { userId: user.id, email: user.email },
+    { userId: user.id, username: user.username },
     config.jwtSecret,
     { expiresIn: "1h" }
   )

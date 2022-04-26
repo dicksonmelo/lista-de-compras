@@ -2,7 +2,6 @@ import { IsNotEmpty, Length } from "class-validator"
 import {
   Column,
   Entity,
-  OneToOne,
   PrimaryColumn,
   Unique,
   UpdateDateColumn,
@@ -10,15 +9,15 @@ import {
 import { v4 as uuid } from "uuid"
 import bcrypt from "bcryptjs"
 
-@Entity("users")
-@Unique(["email"])
+@Entity("user")
+@Unique(["username"])
 export class User {
   @PrimaryColumn()
   id: string
 
   @Column()
   @Length(4, 50)
-  email: string
+  username: string
 
   @Column()
   @Length(4, 40)
@@ -46,6 +45,7 @@ export class User {
   constructor() {
     if (!this.id) {
       this.id = uuid()
+      this.created_at = new Date()
     }
   }
 }

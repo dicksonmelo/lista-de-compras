@@ -1,6 +1,6 @@
-import { User } from "entities/User"
+import { User } from "../../entities/User"
 import { Request, Response } from "express"
-import AppDataSource from "database/dataSource"
+import AppDataSource from "../../database/dataSource"
 
 export const deleteUserController = async (req: Request, res: Response) => {
   //Get the ID from the url

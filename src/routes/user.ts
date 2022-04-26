@@ -15,11 +15,7 @@ const router = Router()
 router.get("/", [checkJwt, checkRole(["ADMIN"])], listAll)
 
 // Get one user
-router.get(
-  "/:id([0-9]+)",
-  [checkJwt, checkRole(["ADMIN"])],
-  getOneByIdController
-)
+router.get("/:id", [checkJwt, checkRole(["ADMIN"])], getOneByIdController)
 
 //Create a new user
 router.post("/", [checkJwt, checkRole(["ADMIN"])], createNewUserController)
