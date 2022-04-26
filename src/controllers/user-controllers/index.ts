@@ -1,13 +1,13 @@
 import { createNewUserController } from "./createNewUserController"
 import { deleteUserController } from "./deleteUserController"
-import { editUserController } from "./editUserController"
-import { getOneByIdController } from "./getUserByIdController"
+import { updateUserController } from "./updateUserController"
+import { getUserController } from "./getUserController"
 import { listAll } from "./listAllUsers"
 
 export {
   createNewUserController,
   deleteUserController,
-  editUserController,
-  getOneByIdController,
+  updateUserController,
+  getUserController,
   listAll,
 }

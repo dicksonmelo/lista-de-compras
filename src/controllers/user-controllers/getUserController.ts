@@ -3,7 +3,7 @@ import { Response, Request } from "express"
 import AppDataSource from "../../database/dataSource"
 import { FindOperator } from "typeorm"
 
-export const getOneByIdController = async (req: Request, res: Response) => {
+export const getUserController = async (req: Request, res: Response) => {
   // ge the id from the url
   const id: string | FindOperator<string> = req.params.id
 
