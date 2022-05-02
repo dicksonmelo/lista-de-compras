@@ -1,8 +1,5 @@
-import { validate } from "class-validator"
 import { Request, Response } from "express"
-import updateUserService from "services/user-services/updateUserService"
-import AppDataSource from "../../database/dataSource"
-import { User } from "../../entities/User"
+import updateUserService from "../../services/user-services/updateUserService"
 
 export const updateUserController = async (req: Request, res: Response) => {
   const id: string = req.params.id
