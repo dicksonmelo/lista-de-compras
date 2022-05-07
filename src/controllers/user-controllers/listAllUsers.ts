@@ -1,14 +1,8 @@
 import { Request, Response } from "express"
-import AppDataSource from "../../database/dataSource"
-import { User } from "../../entities/User"
+import listAllUsersService from "../../services/user-services/listAllUsersService"
 
 export const listAll = async (req: Request, res: Response) => {
-  //Get users from database
-  const userRepository = AppDataSource.manager.getRepository(User)
-  const users = await userRepository.find({
-    select: ["id", "username", "role"], //We dont want to send the passwords on response
-  })
+  const users = await listAllUsersService()
 
-  //Send the users object
   res.send(users)
 }

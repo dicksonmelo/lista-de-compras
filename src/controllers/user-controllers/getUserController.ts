@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import getUserService from "services/user-services/getUserService"
+import getUserService from "../../services/user-services/getUserService"
 import { FindOperator } from "typeorm"
 
 export const getUserController = async (req: Request, res: Response) => {
