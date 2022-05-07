@@ -11,19 +11,10 @@ import { checkRole } from "../middlewares/checkRole"
 
 const router = Router()
 
-// get all users
 router.get("/", [checkJwt, checkRole(["ADMIN"])], listAll)
-
-// Get one user
 router.get("/:id", [checkJwt, checkRole(["ADMIN"])], getUserController)
-
-//Create a new user
 router.post("/", createNewUserController)
-
-//Edit one user
 router.patch("/:id", [checkJwt, checkRole(["ADMIN"])], updateUserController)
-
-//Delete one user
 router.delete("/:id", [checkJwt, checkRole(["ADMIN"])], deleteUserController)
 
 export default router
