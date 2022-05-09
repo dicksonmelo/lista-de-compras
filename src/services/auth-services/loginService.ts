@@ -18,7 +18,7 @@ export const loginService = async ({
   }
 
   const userRepository = AppDataSource.manager.getRepository(User)
-  console.log("chega aqui")
+
   const user = await userRepository.findOne({ where: { username } })
   if (!user) return new Error("User doesn't exist")
 
