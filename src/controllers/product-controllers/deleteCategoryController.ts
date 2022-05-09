@@ -1,4 +1,4 @@
-import { Request, response, Response } from "express"
+import { Request, Response } from "express"
 import { deleteProductService } from "../../services/product-services"
 
 export const deleteProductController = async (req: Request, res: Response) => {
@@ -7,8 +7,8 @@ export const deleteProductController = async (req: Request, res: Response) => {
   const result = deleteProductService(id)
 
   if (result instanceof Error) {
-    return response.status(400).json(result.message)
+    return res.status(400).json(result.message)
   }
 
-  return response.status(204).end()
+  return res.status(204).end()
 }
