@@ -6,6 +6,8 @@
   "dependencies": {
     "@types/bcryptjs": "^2.4.2",
     "@types/helmet": "^4.0.0",
+    "@types/swagger-jsdoc": "^6.0.1",
+    "@types/swagger-ui-express": "^4.1.3",
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.13.2",
     "cookie-parser": "^1.4.6",
@@ -15,6 +17,8 @@
     "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
     "reflect-metadata": "^0.1.13",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0",
     "ts-node": "^10.7.0",
     "typeorm": "^0.3.6",
     "uuid": "^8.3.2"
