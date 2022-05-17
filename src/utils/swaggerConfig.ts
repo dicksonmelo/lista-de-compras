@@ -1,7 +1,17 @@
 import swaggerJSDoc, { Options } from "swagger-jsdoc"
+import { productPaths } from "./productPaths"
 
 const swaggerConfig: Options = {
   definition: {
+    components: {
+      securitySchemes: {
+        ApiKeyAuth: {
+          type: "apiKey",
+          name: "auth",
+          in: "header",
+        },
+      },
+    },
     openapi: "3.0.0",
     info: {
       title: "Lista de Compras Express API",
@@ -14,49 +24,9 @@ const swaggerConfig: Options = {
       },
     },
     servers: [{ url: "http://localhost:3000/" }],
-    paths: {
-      "/api/product": {
-        get: {
-          tags: ["Product"],
-          summary: "Product",
-          responses: {
-            "200": {
-              description: "Get all products available.",
-              content: {
-                "application/json": {
-                  schema: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-        post: {
-          tags: ["Product"],
-          parameters: [
-            {
-              name: "name",
-              in: "body",
-              required: true,
-              example: {
-                name: "uva"
-              }
-            },
-          ],
-          responses: {
-            "200": {
-              description: "Post a new product.",
-              schema: {
-                type: "array",
-              },
-            },
-          },
-        },
-      },
+    paths: { ...productPaths },
+    security: {
+      ApiKeyAuth: []
     },
     definitions: {
       User: {
