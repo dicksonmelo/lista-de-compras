@@ -10,7 +10,7 @@ export const createProductController = async (
   const creationResult = await createProductService({ name })
 
   if (creationResult instanceof Error) {
-    return response.status(400).json(creationResult)
+    return response.status(400).json(creationResult.message)
   }
 
   return response.json(creationResult)
