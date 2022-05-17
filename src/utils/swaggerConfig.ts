@@ -1,5 +1,5 @@
 import swaggerJSDoc, { Options } from "swagger-jsdoc"
-import { productPaths } from "./productPaths"
+import { getProductById, getProducts, postProducts } from "./productConfig"
 
 const swaggerConfig: Options = {
   definition: {
@@ -26,52 +26,12 @@ const swaggerConfig: Options = {
     servers: [{ url: "http://localhost:3000/" }],
     paths: {
       "/api/products": {
-        get: {
-          tags: ["Product"],
-          summary: "Product",
-          responses: {
-            "200": {
-              description: "Get all products available.",
-              content: {
-                "application/json": {
-                  schema: {
-                    type: "array",
-                    items: {
-                      type: "object",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-        post: {
-          tags: ["Product"],
-          requestBody: {
-            description: "fazer o post",
-            content: {
-              "application/json": {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    name: {
-                      type: "string"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          responses: {
-            "200": {
-              description: "Post a new product.",
-              schema: {
-                type: "array",
-              },
-            },
-          },
-        },
+        ...getProducts,
+        ...postProducts,
       },
+      "/api/products/{id}": {
+        ...getProductById
+      }
     },
     security: [
       {
