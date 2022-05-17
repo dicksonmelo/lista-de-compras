@@ -10,7 +10,7 @@ const { manager } = AppDataSource
 
 const updateProductService = async ({ id, name }: ProductUpdateRequest) => {
   const repo = manager.getRepository(Product)
-
+  
   const product = await repo.findOne({ where: { id } })
 
   if (!product) {

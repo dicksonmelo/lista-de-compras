@@ -1,4 +1,5 @@
 import { Router } from "express"
+import swaggerJSDoc from "swagger-jsdoc"
 import {
   createProductController,
   deleteProductController,
@@ -9,7 +10,6 @@ import {
 import { checkJwt } from "../middlewares/checkJwt"
 
 const routes = Router()
-
 routes.post("/products", [checkJwt], createProductController)
 routes.get("/products", [checkJwt], getAllProductsController)
 routes.get("/products/:id", [checkJwt], getProductController)

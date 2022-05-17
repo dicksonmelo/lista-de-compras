@@ -1,4 +1,4 @@
-import { Response, Request, response } from "express"
+import { Response, Request } from "express"
 import { updateProductService } from "../../services/product-services/"
 
 export const updateProductController = async (req: Request, res: Response) => {
@@ -8,8 +8,8 @@ export const updateProductController = async (req: Request, res: Response) => {
   const result = await updateProductService({ id, name })
 
   if (result instanceof Error) {
-    return response.status(400).json(result.message)
+    return res.status(400).json(result.message)
   }
 
-  return response.json(result)
+  return res.json(result)
 }

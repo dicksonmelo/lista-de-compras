@@ -1,10 +1,10 @@
-import "reflect-metadata"
+import bodyParser from "body-parser"
+import cors from "cors"
 import express from "express"
+import helmet from "helmet"
+import "reflect-metadata"
 import AppDataSource from "./database/dataSource"
 import routes from "./routes"
-import cors from "cors"
-import helmet from "helmet"
-import bodyParser from "body-parser"
 
 const app = express()
 

@@ -11,7 +11,6 @@ const AppDataSource = new DataSource({
   database: "shopping-list",
   migrations: ["src/database/migrations/*.ts"],
   entities: [Product, User],
-  logging: true,
   synchronize: true,
 })
 
