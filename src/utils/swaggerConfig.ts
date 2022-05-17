@@ -1,5 +1,11 @@
 import swaggerJSDoc, { Options } from "swagger-jsdoc"
-import { getProductById, getProducts, postProducts } from "./productConfig"
+import {
+  deleteProduct,
+  getProductById,
+  getProducts,
+  postProducts,
+  updateProduct,
+} from "./productConfig"
 
 const swaggerConfig: Options = {
   definition: {
@@ -30,8 +36,10 @@ const swaggerConfig: Options = {
         ...postProducts,
       },
       "/api/products/{id}": {
-        ...getProductById
-      }
+        ...getProductById,
+        ...deleteProduct,
+        ...updateProduct
+      },
     },
     security: [
       {
