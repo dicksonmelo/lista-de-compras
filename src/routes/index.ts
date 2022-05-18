@@ -8,9 +8,9 @@ import logger from "../middlewares/logger"
 
 const routes = Router()
 
-routes.use("/auth", logger, auth)
-routes.use("/user", logger, user)
-routes.use("/api", logger, product)
+routes.use("/auth", auth, logger)
+routes.use("/user", user, logger)
+routes.use("/api", product, logger)
 routes.use("/api-docs", swaggerUi.serve)
 routes.get("/api-docs", swaggerUi.setup(swaggerConfig))
 

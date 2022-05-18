@@ -1,11 +1,11 @@
+import { NextFunction, Request, Response } from "express"
 import createNewUserService from "../../services/user-services/createNewUserService"
-import { validate } from "class-validator"
-import { Request, Response } from "express"
-import AppDataSource from "../../database/dataSource"
-import { User } from "../../entities/User"
 
-export const createNewUserController = async (req: Request, res: Response) => {
-  // get parameters from the body
+export const createNewUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { username, password, role } = req.body
 
   const creationResult = await createNewUserService({
@@ -15,9 +15,12 @@ export const createNewUserController = async (req: Request, res: Response) => {
   })
 
   if (creationResult instanceof Error) {
-    return res.status(400).json(creationResult)
+    res.status(400).json(creationResult)
+    next()
+    return
   }
 
-  // if all ok, send 201 response
-  return res.status(201).send(creationResult)
+  res.status(201).send(creationResult)
+  next()
+  return
 }

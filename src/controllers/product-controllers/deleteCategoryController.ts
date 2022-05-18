@@ -1,14 +1,22 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { deleteProductService } from "../../services/product-services"
 
-export const deleteProductController = async (req: Request, res: Response) => {
+export const deleteProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
 
   const result = deleteProductService(id)
 
   if (result instanceof Error) {
-    return res.status(400).json(result.message)
+    res.status(400).json(result.message)
+    next()
+    return
   }
 
-  return res.status(204).end()
+  res.status(204).end()
+  next()
+  return
 }

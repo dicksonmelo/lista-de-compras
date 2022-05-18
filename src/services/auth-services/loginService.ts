@@ -1,8 +1,7 @@
-import { Request, Response } from "express"
 import jwt from "jsonwebtoken"
+import config from "../../config/config"
 import AppDataSource from "../../database/dataSource"
 import { User } from "../../entities/User"
-import config from "../../config/config"
 
 type Login = {
   username: string

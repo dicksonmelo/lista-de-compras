@@ -5,10 +5,8 @@ import { checkJwt } from "../middlewares/checkJwt"
 
 const router = Router()
 
-// Login route
 router.post("/login", loginController)
 
-// change password
 router.post("/change-password", [checkJwt], changePassword)
 
 export default router

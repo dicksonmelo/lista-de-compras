@@ -6,9 +6,9 @@ export default (req: Request, res: Response, next: NextFunction) => {
 
   const message: string = `[${time.toLocaleTimeString(
     "pt-BR"
-  )}] - [${method}] - [${originalUrl}]`
+  )}] - [${method}] - [${originalUrl}] - [${res.statusCode} ${res.statusMessage}]`
   
-  console.log(message, res.locals)
+  console.log(message)
 
   next()
 }

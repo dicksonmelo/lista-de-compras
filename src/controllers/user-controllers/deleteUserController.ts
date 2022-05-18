@@ -1,15 +1,21 @@
-import { User } from "../../entities/User"
-import { Request, Response } from "express"
-import AppDataSource from "../../database/dataSource"
+import { NextFunction, Request, Response } from "express"
 import deleteUserService from "../../services/user-services/deleteUserService"
 
-export const deleteUserController = async (req: Request, res: Response) => {
+export const deleteUserController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const id: string = req.params.id
 
   const result = deleteUserService({ id })
   if (result instanceof Error) {
-    return res.status(404).send(result.message)
+    res.status(404).send(result.message)
+    next()
+    return
   }
 
-  return res.status(204).send()
+  res.status(204).send()
+  next()
+  return
 }
