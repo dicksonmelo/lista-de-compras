@@ -1,13 +1,21 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import { loginService } from "../../services/auth-services/loginService"
 
-export const loginController = async (req: Request, res: Response) => {
+export const loginController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { username, password } = await req.body
   const token = await loginService({ username, password })
 
   if (token instanceof Error) {
-    return res.status(400).send(token.message)
+    res.status(400).send(token.message)
+    next()
+    return
   }
 
-  return res.send(token)
+  res.send(token)
+  next()
+  return
 }

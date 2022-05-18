@@ -1,15 +1,23 @@
-import { Response, Request } from "express"
+import { Response, Request, NextFunction } from "express"
 import { updateProductService } from "../../services/product-services/"
 
-export const updateProductController = async (req: Request, res: Response) => {
+export const updateProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
   const { name } = req.body
 
   const result = await updateProductService({ id, name })
 
   if (result instanceof Error) {
-    return res.status(400).json(result.message)
+    res.status(400).json(result.message)
+    next()
+    return
   }
 
-  return res.json(result)
+  res.json(result)
+  next()
+  return
 }

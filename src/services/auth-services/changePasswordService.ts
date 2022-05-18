@@ -1,6 +1,4 @@
-import { Request, Response } from "express"
 import AppDataSource from "../../database/dataSource"
-import { validate } from "class-validator"
 import { User } from "../../entities/User"
 
 type ChangePassword = {

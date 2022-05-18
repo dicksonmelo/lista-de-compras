@@ -1,14 +1,22 @@
-import { Response, Request } from "express"
+import { NextFunction, Request, Response } from "express"
 import { getProductService } from "../../services/product-services/"
 
-export const getProductController = async (req: Request, res: Response) => {
+export const getProductController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const { id } = req.params
 
   const product = await getProductService({ id })
 
   if (product instanceof Error) {
-    return res.status(400).json(product.message)
+    res.status(400).json(product.message)
+    next()
+    return
   }
 
-  return res.json(product)
+  res.json(product)
+  next()
+  return
 }

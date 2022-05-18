@@ -1,11 +1,10 @@
 import { Router } from "express"
-import swaggerJSDoc from "swagger-jsdoc"
 import {
   createProductController,
   deleteProductController,
   getAllProductsController,
   getProductController,
-  updateProductController,
+  updateProductController
 } from "../controllers/product-controllers"
 import { checkJwt } from "../middlewares/checkJwt"
 
