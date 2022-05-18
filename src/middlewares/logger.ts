@@ -6,7 +6,7 @@ export default (req: Request, res: Response, next: NextFunction) => {
 
   const message: string = `[${time.toLocaleTimeString(
     "pt-BR"
-  )}] - [${method}] - [${originalUrl}] - [${res.statusCode} ${res.statusMessage}]`
+  )}] - \x1b[36m[${method}]\x1b[0m - [${originalUrl}] - [${res.statusCode} ${res.statusMessage}]`
   
   console.log(message)
 
