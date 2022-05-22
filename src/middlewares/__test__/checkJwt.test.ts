@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express"
+import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken"
 import { checkJwt } from "../checkJwt"
 
 describe("JWT verification", () => {
@@ -16,12 +17,34 @@ describe("JWT verification", () => {
   it("should return an error when given token is invalid", async () => {
     mockRequest = {
       headers: {
-        auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4N2QzNzlmNy1hOTQ0LTQ5MDMtYjM3MS02NjllZDhjZGIxMzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjUyOTA2MzEzLCJleHAiOjE2NTI5MjQzMTN9.5u2wtw1n1F8sFTKnI2M0QBA88vNl68JOn-KvNaznnGo",
+        auth: "abc",
       },
     }
 
-    expect(
+    let result: JsonWebTokenError | string
+    try {
       checkJwt(mockRequest as Request, mockResponse as Response, nextFunction)
-    ).toBeInstanceOf(Error)
+    } catch (e) {
+      result = e.name
+    }
+
+    expect(result).toBe("JsonWebTokenError")
+  })
+
+  it("should return expired error for expired token", async () => {
+    mockRequest = {
+      headers: {
+        auth: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4N2QzNzlmNy1hOTQ0LTQ5MDMtYjM3MS02NjllZDhjZGIxMzQiLCJ1c2VybmFtZSI6ImFkbWluIiwiaWF0IjoxNjUyODYzNDc5LCJleHAiOjE2NTI4ODE0Nzl9.ZhFQAqEgH8XSWhme76YPuPP3mbTmpRQvjdtnq16Ft18",
+      },
+    }
+
+    let result: JsonWebTokenError | string
+    try {
+      checkJwt(mockRequest as Request, mockResponse as Response, nextFunction)
+    } catch (e) {
+      result = e.name
+    }
+
+    expect(result).toBe("TokenExpiredError")
   })
 })
