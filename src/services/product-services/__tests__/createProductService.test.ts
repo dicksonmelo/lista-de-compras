@@ -1,4 +1,4 @@
-import { getProductRepoResponse } from "../../../utils/test-utils/getProductRepoResponse"
+import { getProductRepoResponse } from "../../../utils/test-utils/productMocks"
 import createProductService from "../createProductService"
 
 jest.mock("../../../database/dataSource", () => ({
@@ -6,11 +6,36 @@ jest.mock("../../../database/dataSource", () => ({
 }))
 
 describe("Create Product Service", () => {
-  it("returns an error when product name already exists", () => {
-    const productName = "uva"
-    const userRepo = getProductRepoResponse(productName)
-    createProductService({ name: productName })
+  const product = {
+      id: "1",
+      name: "Uva",
+      createdAt: new Date(),
+    }
+  it("returns an error when product name already exists", async () => {
+    const productResponse = getProductRepoResponse({
+      findOne: true,
+      product
+    })
 
-    expect(userRepo.findOne).toBeCalled()
+    const returned = await createProductService({ name: "Uva" })
+
+    expect(productResponse.findOne).toBeCalled()
+    expect(productResponse.create).toBeCalledTimes(0)
+    expect(productResponse.save).toBeCalledTimes(0)
+    expect(returned).toBeInstanceOf(Error)
+  })
+
+  it("returns a product when can't find a product with same name", async () => {
+    const productResponse = getProductRepoResponse({
+      findOne: false,
+      product
+    })
+
+    const returned = await createProductService({ name: "Uva" })
+
+    expect(productResponse.findOne).toBeCalled()
+    expect(productResponse.create).toBeCalledTimes(1)
+    expect(productResponse.save).toBeCalledTimes(1)
+    expect(returned).not.toBeInstanceOf(Error)
   })
 })

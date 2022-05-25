@@ -6,7 +6,8 @@ const { manager } = AppDataSource
 const deleteProductService = async (id: string) => {
   const repo = manager.getRepository(Product)
 
-  if (!(await repo.findOne({ where: { id } }))) {
+  const product = await repo.findOne({ where: { id } })
+  if (!product) {
     return new Error("Product doesn't exist")
   }
 
