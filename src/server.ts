@@ -1,11 +1,16 @@
 import bodyParser from "body-parser"
 import cors from "cors"
-import express, { NextFunction } from "express"
+import express from "express"
 import helmet from "helmet"
 import "reflect-metadata"
 import AppDataSource from "./database/dataSource"
 import routes from "./routes"
+import dotenv from 'dotenv'
 
+if (process.env.NODE_ENV === 'test') {
+  console.log("Iniciando testes com o variáveis de ambiente de testes...")
+  dotenv.config({path: '../.env.test'})
+}
 const app = express()
 
 app.use(cors())

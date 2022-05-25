@@ -1,4 +1,7 @@
 node_modules
 .env
+.env.test
+yarn-error.log
 yarn.lock
 READMEpvt.md
+coverage

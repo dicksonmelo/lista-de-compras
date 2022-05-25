@@ -4,14 +4,13 @@ import config from "../config/config"
 
 export const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   const token = <string>req.headers["auth"]
-  let jwtPayload
+  const jwtPayload = <any>jwt.verify(token, config.jwtSecret)
 
-  try {
-    jwtPayload = <any>jwt.verify(token, config.jwtSecret)
-    res.locals.jwtPayload = jwtPayload
-  } catch (error) {
-    return res.status(401).send(error)
+  if (jwtPayload instanceof Error) {
+    return res.status(401).send(jwtPayload.message)
   }
+
+  res.locals.jwtPayload = jwtPayload
 
   const { userId, username } = jwtPayload
   const newToken = jwt.sign({ userId, username }, config.jwtSecret, {

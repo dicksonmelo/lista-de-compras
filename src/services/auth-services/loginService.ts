@@ -11,7 +11,7 @@ type Login = {
 export const loginService = async ({
   username,
   password,
-}: Login): Promise<string | Error> => {
+}: Login): Promise<any | Error> => {
   if (!username && !password) {
     return new Error("You have to provide both valid username and password")
   }
@@ -22,7 +22,7 @@ export const loginService = async ({
   if (!user) return new Error("User doesn't exist")
 
   const passwordIsValid: boolean = <boolean>(
-    user.checkIfUnencruptedPasswordIsValid(password)
+    user.checkIfUnencryptedPasswordIsValid(password)
   )
   if (!passwordIsValid) return new Error("Senha inválida")
 
