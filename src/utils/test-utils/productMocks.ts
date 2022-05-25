@@ -14,7 +14,7 @@ type CreateProductMockType = {
 
 type DeleteProductMockType = {
   findOne: boolean
-  delete: {}
+  delete: unknown
 }
 
 type GetProductMockType = {
@@ -28,10 +28,10 @@ type UpdateProductMockType = {
   product?: Product
 }
 
-const mockAppDataSource = (productRepo: any) => {
+const mockAppDataSource = (productRepo: never) => {
   jest
     .mocked(AppDataSource.manager.getRepository)
-    .mockReturnValueOnce(productRepo as never)
+    .mockReturnValueOnce(productRepo)
 }
 
 export const createProductRepoResponsese = (product: CreateProductMockType) => {
@@ -41,7 +41,7 @@ export const createProductRepoResponsese = (product: CreateProductMockType) => {
     save: jest.fn().mockResolvedValueOnce(true),
   }
 
-  mockAppDataSource(productRepo)
+  mockAppDataSource(productRepo as never)
 
   return productRepo
 }
@@ -52,7 +52,7 @@ export const deleteProductRepoResponse = (product: DeleteProductMockType) => {
     delete: jest.fn().mockResolvedValueOnce({}),
   }
 
-  mockAppDataSource(productRepo)
+  mockAppDataSource(productRepo as never)
 
   return productRepo
 }
@@ -63,7 +63,7 @@ export const getProductRepoResponse = (product: GetProductMockType) => {
     product: jest.fn().mockReturnValueOnce(product.product),
   }
 
-  mockAppDataSource(productRepo)
+  mockAppDataSource(productRepo as never)
 
   return productRepo
 }
@@ -74,7 +74,7 @@ export const updateProductRepoResponse = (product: UpdateProductMockType) => {
     save: jest.fn().mockReturnValueOnce(product.product),
   }
 
-  mockAppDataSource(productRepo)
+  mockAppDataSource(productRepo as never)
 
   return productRepo
 }
