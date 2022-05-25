@@ -1,4 +1,4 @@
-import { getProductRepoResponse } from "../../../utils/test-utils/productMocks"
+import { createProductRepoResponsese } from "../../../utils/test-utils/productMocks"
 import createProductService from "../createProductService"
 
 jest.mock("../../../database/dataSource", () => ({
@@ -12,7 +12,7 @@ describe("Create Product Service", () => {
       createdAt: new Date(),
     }
   it("returns an error when product name already exists", async () => {
-    const productResponse = getProductRepoResponse({
+    const productResponse = createProductRepoResponsese({
       findOne: true,
       product
     })
@@ -26,7 +26,7 @@ describe("Create Product Service", () => {
   })
 
   it("returns a product when can't find a product with same name", async () => {
-    const productResponse = getProductRepoResponse({
+    const productResponse = createProductRepoResponsese({
       findOne: false,
       product
     })

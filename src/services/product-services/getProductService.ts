@@ -1,12 +1,21 @@
 import AppDataSource from "../../database/dataSource"
 import { Product } from "../../entities/Product"
+import { validate } from "uuid"
 
-const getProductService = async ({ id }) => {
+type GetProductType = {
+  id: string
+}
+
+const getProductService = async ({
+  id,
+}: GetProductType): Promise<Product | Error> => {
   const { manager } = AppDataSource
   const repo = manager.getRepository(Product)
 
-  const product = await repo.findOne({ where: { id } })
+  const isValid = validate(id)
+  if (!isValid) return new Error("Invalid ID")
 
+  const product = await repo.findOne({ where: { id } })
   if (!product) {
     return new Error("Product doesn't exist")
   }

@@ -1,31 +1,37 @@
 import AppDataSource from "../../database/dataSource"
 
-type GetProductType = {
-  findOne: boolean,
-  product: {
-    id: string,
-    name: string,
-    createdAt: Date
-  }
+type ProductMockType = {
+  id: string
+  name: string
+  createdAt: Date
 }
 
-type DeleteProductType = {
-  findOne: boolean,
+type CreateProductMockType = {
+  findOne: boolean
+  product: ProductMockType
+}
+
+type DeleteProductMockType = {
+  findOne: boolean
   delete: {}
 }
 
-const mockAppDataSource = (productRepo) => {
+type GetProductMockType = {
+  findOne: boolean
+  product: ProductMockType
+}
+
+const mockAppDataSource = (productRepo: any) => {
   jest
     .mocked(AppDataSource.manager.getRepository)
     .mockReturnValueOnce(productRepo as never)
-
 }
 
-export const getProductRepoResponse = (product: GetProductType) => {
+export const createProductRepoResponsese = (product: CreateProductMockType) => {
   const productRepo = {
     findOne: jest.fn().mockResolvedValueOnce(product.findOne),
     create: jest.fn().mockReturnValueOnce(product.product),
-    save: jest.fn().mockResolvedValueOnce(true)
+    save: jest.fn().mockResolvedValueOnce(true),
   }
 
   mockAppDataSource(productRepo)
@@ -33,10 +39,21 @@ export const getProductRepoResponse = (product: GetProductType) => {
   return productRepo
 }
 
-export const deleteProductRepoResponse = (product: DeleteProductType) => {
+export const deleteProductRepoResponse = (product: DeleteProductMockType) => {
   const productRepo = {
     findOne: jest.fn().mockResolvedValueOnce(product.findOne),
-    delete: jest.fn().mockResolvedValueOnce({})
+    delete: jest.fn().mockResolvedValueOnce({}),
+  }
+
+  mockAppDataSource(productRepo)
+
+  return productRepo
+}
+
+export const getProductRepoResponse = (product: GetProductMockType) => {
+  const productRepo = {
+    findOne: jest.fn().mockResolvedValueOnce(product.findOne),
+    product: jest.fn().mockReturnValueOnce(product.product)
   }
 
   mockAppDataSource(productRepo)
