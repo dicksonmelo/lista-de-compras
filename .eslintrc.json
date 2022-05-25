@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 2],
+    "@typescript-eslint/array-type": ["error", { "default": "array" }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-shadow": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-use-before-define": "off",
+    "arrow-body-style": "off",
+    "class-methods-use-this": "off",
+    "func-names": "off",
+    "import/extensions": [0],
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "off",
+    "max-classes-per-file": "off",
+    "max-len": ["error", { "code": 100, "ignoreStrings": true }],
+    "no-console": ["error", { "allow": ["info"] }],
+    "no-empty-function": "off",
+    "no-param-reassign": 0,
+    "no-restricted-syntax": 0,
+    "no-shadow": "off",
+    "no-unused-vars": "off",
+    "no-use-before-define": "off",
+    "no-useless-constructor": "off",
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"]
+  }
+}
