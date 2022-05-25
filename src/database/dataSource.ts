@@ -1,16 +1,32 @@
 import { DataSource } from "typeorm"
-import { Product } from "../entities/Product"
-import { User } from "../entities/User"
+import dotenv from "dotenv"
+
+dotenv.config()
+
+const {
+  TYPEORM_CONNECTION,
+  TYPEORM_HOST,
+  TYPEORM_USERNAME,
+  TYPEORM_PASSWORD,
+  TYPEORM_DATABASE,
+  TYPEORM_PORT,
+  TYPEORM_MIGRATIONS,
+  TYPEORM_ENTITIES,
+  TYPEORM_DATABASE_NAME,
+  NODE_ENV,
+} = process.env
 
 const AppDataSource = new DataSource({
-  type: "postgres",
-  host: "localhost",
-  port: 5433,
-  username: "postgres",
-  password: "1p@st",
-  database: "shopping-list",
-  migrations: ["src/database/migrations/*.ts"],
-  entities: [Product, User],
+  name: TYPEORM_DATABASE_NAME,
+  type: TYPEORM_CONNECTION as any,
+  host: TYPEORM_HOST,
+  port: TYPEORM_PORT as unknown as number,
+  username: TYPEORM_USERNAME,
+  password: TYPEORM_PASSWORD,
+  database: TYPEORM_DATABASE,
+  migrations: [TYPEORM_MIGRATIONS],
+  entities: [TYPEORM_ENTITIES],
+  dropSchema: NODE_ENV === "test" ? true : false,
   synchronize: true,
 })
 
