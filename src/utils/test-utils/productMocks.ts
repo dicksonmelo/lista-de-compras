@@ -1,4 +1,5 @@
 import AppDataSource from "../../database/dataSource"
+import { Product } from "../../entities/Product"
 
 type ProductMockType = {
   id: string
@@ -19,6 +20,12 @@ type DeleteProductMockType = {
 type GetProductMockType = {
   findOne: boolean
   product: ProductMockType
+}
+
+type UpdateProductMockType = {
+  findOne: Product | boolean
+  save?: boolean
+  product?: Product
 }
 
 const mockAppDataSource = (productRepo: any) => {
@@ -53,7 +60,18 @@ export const deleteProductRepoResponse = (product: DeleteProductMockType) => {
 export const getProductRepoResponse = (product: GetProductMockType) => {
   const productRepo = {
     findOne: jest.fn().mockResolvedValueOnce(product.findOne),
-    product: jest.fn().mockReturnValueOnce(product.product)
+    product: jest.fn().mockReturnValueOnce(product.product),
+  }
+
+  mockAppDataSource(productRepo)
+
+  return productRepo
+}
+
+export const updateProductRepoResponse = (product: UpdateProductMockType) => {
+  const productRepo = {
+    findOne: jest.fn().mockResolvedValueOnce(product.findOne),
+    save: jest.fn().mockReturnValueOnce(product.product),
   }
 
   mockAppDataSource(productRepo)
