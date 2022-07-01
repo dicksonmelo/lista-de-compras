@@ -1,5 +1,5 @@
 {
-  "name": "lista-de-compras",
+  "name": "app-feirinha",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "pg": "^8.7.3",
+    "make-runnable": "^1.3.10",
     "reflect-metadata": "^0.1.13",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.3.0",
@@ -30,12 +31,14 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "dev": "NODE_ENV=development ts-node-dev --transpile-only src/server.ts",
+    "dev": "ts-node-dev --transpile-only src/server.ts",
     "typeorm": "ts-node-dev node_modules/typeorm/cli.js",
     "test": "NODE_ENV=test jest",
     "tsc": "tsc",
     "prod": "tsc && node ./build/app.js",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "build": "rimraf ./dist && npx tsc",
+    "start": "node dist/server.js"
   },
   "devDependencies": {
     "@types/cookie-parser": "^1.4.2",

@@ -1,5 +1,5 @@
 import { Response, Request, NextFunction } from "express"
-import { createList } from "../services/productServices"
+import { createList } from "../../services/product-services"
 
 const createListController = async (
   req: Request,
