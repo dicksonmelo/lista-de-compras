@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from "express"
-import { JsonWebTokenError, TokenExpiredError } from "jsonwebtoken"
+import { JsonWebTokenError } from "jsonwebtoken"
 import { checkJwt } from "../checkJwt"
 
 describe("JWT verification", () => {
   let mockRequest: Partial<Request>
   let mockResponse: Partial<Response>
-  let nextFunction: NextFunction = jest.fn()
+  const nextFunction: NextFunction = jest.fn()
 
   beforeEach(() => {
     mockRequest = {}

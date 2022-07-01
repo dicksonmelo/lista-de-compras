@@ -1,13 +1,3 @@
-import createProductService from "./createProductService"
-import deleteProductService from "./deleteProductService"
-import getAllProductsService from "./getAllProductsService"
-import getProductService from "./getProductService"
-import updateProductService from "./updateProductService"
+import createList from "./create-list";
 
-export {
-  createProductService,
-  deleteProductService,
-  getAllProductsService,
-  getProductService,
-  updateProductService,
-}
+export { createList };
