@@ -1,5 +1,5 @@
 import { Router } from "express"
-import product from "./product"
+import product from "./list"
 
 const routes = Router()
 
