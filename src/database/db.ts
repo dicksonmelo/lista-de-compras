@@ -10,7 +10,9 @@ const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_P
 const isProduction = true
 
 const pool = new Pool({
-  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+  connectionString: process.env.DB_CONNECTION_STRING
+    ? process.env.DATABASE_URL
+    : connectionString,
   ssl: isProduction,
 })
 
