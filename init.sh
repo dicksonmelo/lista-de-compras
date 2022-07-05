@@ -1,4 +1,4 @@
 npm install
 npm run build
-node dist/src/database/migrations/createAllTables-20220615.js createAllTables
+cat init.sql | heroku pg:psql postgresql-clean-14556 --app app-feirinha
 npm start

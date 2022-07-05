@@ -1,7 +1,3 @@
-import dotenv from "dotenv"
-
-dotenv.config()
-
 const { PGUSER, PGHOST, PGPASSWORD, PGDATABASE, PGPORT } = process.env
 
 export const config = {
