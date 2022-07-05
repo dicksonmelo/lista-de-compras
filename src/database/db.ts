@@ -4,16 +4,16 @@ import dotenv from "dotenv"
 dotenv.config()
 
 // eslint-disable-next-line max-len
-const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
+// const connectionString = `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}`
 
 // const isProduction = process.env.NODE_ENV === "production"
-const isProduction = true
+// const isProduction = true
 
 const pool = new Pool({
-  connectionString: process.env.DB_CONNECTION_STRING
-    ? process.env.DATABASE_URL
-    : connectionString,
-  ssl: isProduction,
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 })
 
 const query = async (text: string, params = []) => {
