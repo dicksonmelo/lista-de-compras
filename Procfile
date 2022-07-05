@@ -1,3 +1,3 @@
-web:npm install
+web:yarn
 web:node dist/database/migrations/createAllTables-20220615.js createAllTables
-web:npm run build && npm start
+web:yarn run build && yarn start
