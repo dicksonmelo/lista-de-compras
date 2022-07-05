@@ -1,2 +1,2 @@
-release: cat src/database/init.sql | heroku pg:psql postgresql-clean-14556 --app app-feirinha
+release: psql $(printenv DATABASE_URL) src/database/init.sql -f src/database/init.sql
 web: npm start
