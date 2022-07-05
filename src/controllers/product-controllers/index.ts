@@ -1,13 +1,3 @@
-import { createProductController } from "./createProductController"
-import { deleteProductController } from "./deleteCategoryController"
-import { getAllProductsController } from "./getAllProductsController"
-import { getProductController } from "./getProductController"
-import { updateProductController } from "./updateProductController"
+import createListController from "./createListController"
 
-export {
-  createProductController,
-  deleteProductController,
-  getAllProductsController,
-  getProductController,
-  updateProductController,
-}
+export { createListController }

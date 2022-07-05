@@ -1,17 +1,17 @@
+import express from "express"
+import dotenv from "dotenv"
 import bodyParser from "body-parser"
 import cors from "cors"
-import express from "express"
 import helmet from "helmet"
 import "reflect-metadata"
-import AppDataSource from "./database/dataSource"
 import routes from "./routes"
-import dotenv from 'dotenv'
+import { pool } from "./database/db"
 
-if (process.env.NODE_ENV === 'test') {
-  console.log("Iniciando testes com o variáveis de ambiente de testes...")
-  dotenv.config({path: '../.env.test'})
-}
+dotenv.config()
+const port = process.env.PORT
 const app = express()
+
+pool.on("connect", () => console.log("Connected to Database"))
 
 app.use(cors())
 app.use(helmet())
@@ -20,5 +20,9 @@ app.use(bodyParser.json())
 app.use(express.json())
 app.use(routes)
 
-AppDataSource.initialize()
-app.listen(3000, () => console.log("Server is running"))
+pool.on("remove", () => {
+  console.log("client removed")
+  process.exit
+})
+
+app.listen(port, () => console.log(`Server is running on port ${port}`))
