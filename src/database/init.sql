@@ -5,3 +5,29 @@ CREATE TABLE IF NOT EXISTS user_app (
   email VARCHAR(50) NOT NULL,
   PRIMARY KEY (id)
 );
+CREATE TABLE IF NOT EXISTS category (
+  id uuid DEFAULT uuid_generate_v4(),
+  category_name VARCHAR(128) NOT NULL,
+  PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS list (
+  id uuid DEFAULT uuid_generate_v4(),
+  user_id uuid NOT NULL,
+  list_name VARCHAR(128) NOT NULL,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_user FOREIGN KEY(user_id) REFERENCES user_app(id) ON DELETE NO ACTION ON UPDATE NO ACTION
+);
+CREATE TABLE IF NOT EXISTS list_item (
+  product_id uuid NOT NULL,
+  list_id uuid NOT NULL,
+  item_qtd INT,
+  brand VARCHAR(40),
+  CONSTRAINT fk_list FOREIGN KEY (list_id) REFERENCES list(id)
+);
+CREATE TABLE IF NOT EXISTS product (
+  id uuid DEFAULT uuid_generate_v4(),
+  product_name VARCHAR(128) NOT NULL,
+  category_id uuid,
+  PRIMARY KEY (id),
+  CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category(id)
+);
