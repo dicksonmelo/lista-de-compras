@@ -1,1 +1,1 @@
-web:chmod +x ./init.sh && ./init.sh
+web: chmod +x ./init.sh && ./init.sh
