@@ -1,5 +1,5 @@
 import lodash from "lodash"
-import { pool } from "../../database/db"
+import { postAndGetData } from "../../utils/postAndGetData"
 
 type ListService = {
   user_id: string
@@ -8,16 +8,18 @@ type ListService = {
 
 const createListService = async ({ user_id, list_name }: ListService) => {
   try {
-    const createListResult = await pool.query(
-      `INSERT INTO list
+    return await postAndGetData(
+      `
+      INSERT INTO list
       (user_id, list_name)
       VALUES
-      ('${user_id}', '${lodash.capitalize(list_name)}')e;`,
+      ('${user_id}', '${lodash.capitalize(list_name)}');
+      `,
+      "list",
     )
-
-    return createListResult
   } catch (e) {
-    return e
+    const err = new Error(e)
+    return err
   }
 }
 
