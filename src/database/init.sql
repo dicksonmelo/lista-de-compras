@@ -41,3 +41,10 @@ CREATE TABLE IF NOT EXISTS product (
   PRIMARY KEY (id),
   CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category(id)
 );
+INSERT INTO user_app
+VALUES (
+    uuid_generate_v4(),
+    'admin',
+    'admin',
+    'admin@email.com'
+  );
