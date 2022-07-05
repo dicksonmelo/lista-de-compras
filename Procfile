@@ -1,1 +1,2 @@
-web: chmod u+x ./init.sh && ./init.sh
+release: chmod u+x ./init.sh && ./init.sh
+web: npm start
