@@ -9,6 +9,10 @@ const createListController = async (
   const { user_id, list_name } = req.body
 
   const queryResult = await createList({ user_id, list_name })
+  if (queryResult instanceof Error) {
+    res.send(queryResult.message)
+    return
+  }
 
   res.send(queryResult)
 
